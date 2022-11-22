@@ -32,4 +32,5 @@ public class Bank {
         }
         return omsattning;
     }
+    //FIXA SÅ ATT FLERA KONTON MED SAMMA NAMN INTE FÅR EXISTERA???
 }

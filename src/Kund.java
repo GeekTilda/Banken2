@@ -20,6 +20,11 @@ public class Kund {
         this.namn = namn;
         this.personnummer = personnummer;
     }
-
-
+    public void amountPengar() { //En metod som skriver ut hur mycket pengar man har
+        double pengar = 0;
+        for (Konto k : konton) { //En for-loop som går igenom hela listan av konton.
+            pengar =+ k.getSaldo();
+        }
+        System.out.println("Pengar på alla konton: " + pengar); //Skriver ut pengarna
+    }
 }
