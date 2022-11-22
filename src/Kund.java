@@ -20,4 +20,6 @@ public class Kund {
         this.namn = namn;
         this.personnummer = personnummer;
     }
+
+
 }

@@ -16,5 +16,9 @@ public class Konto {
         saldo = saldo + transaktion; //Ändrar saldot efter transaktionen
         this.transaktion = transaktion; //Sätter transaktionen som den vi precis fick in
     }
+
+    public double getSaldo() {
+        return saldo;
+    }
 }
 
