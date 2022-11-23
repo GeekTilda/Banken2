@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
     Scanner sc = new Scanner(System.in); //Skapar en ny skanner
-        while (true) {
+        while (true) { //Håller programmet vid liv
             meny();
         }
     }
@@ -26,13 +26,49 @@ public class Main {
 
         switch (i) {
             case 1:
-                //nyKund();
+                nyKund();
                 break;
             case 2:
-                //nyttKonto();
+                nyttKonto();
                 break;
             case 3:
                 //ETC
+                break;
+            case 4:
+                System.exit(5); //Stänger av
+        }
+    }
+    public static void nyKund() {
+        Scanner sc = new Scanner(System.in); //Skapar en ny skanner
+        System.out.println();
+        System.out.println("Vad heter du?");
+        String name = sc.nextLine(); //Sätter namnet till det man skrev
+        System.out.println("Vad är ditt personnummer? ");
+        String personnummer = sc.nextLine(); //Sätter personnummret till det man skrev
+        double kontonummer = (int) (Math.random()*1000); //Får ett random kontonummer som först är en double men som bli konverterad till int
+        System.out.println("Ditt konto nummer är " + kontonummer);
+        Kund kund = new Kund(name,personnummer,kontonummer); //Gör en ny instans av objektet kund.
+    }
+    public static void nyttKonto() {
+        Scanner sc = new Scanner(System.in); //Skapar en ny skanner
+        System.out.println("Vilket slags konto vill du ha? ");
+        System.out.println("1. Vanligt konto");
+        System.out.println("2. Sparkonto");
+        int i = 0;
+
+        try { //Try-catch metod som kollar om det man skriver in är ett heltal.
+            i = sc.nextInt();
+        } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut och användaren får testa igen.
+            System.out.println("Skriv in ett heltal (1 eller 2)!");
+        }
+
+        switch (i) {
+            case 1:
+
+                Konto konto = new Konto(); //Skapar ett nytt konto
+                break;
+            case 2:
+
                 break;
         }
     }
