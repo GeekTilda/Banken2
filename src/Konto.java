@@ -7,6 +7,9 @@ public class Konto {
     Kund kund = new Kund(); //Skapar en ny instans av objektet kund. Detta för att kunna använda det i addKund()
 
     public Konto() {}
+    public Konto(Kund kund) {
+        this.kund = kund;
+    }
 
     public void addKund() { //För att lägga till en kund till ett konto
         kund.addKonto(this); //Skickar vårt konto till kund klassen som skickar in det i metoden "addKonto"
