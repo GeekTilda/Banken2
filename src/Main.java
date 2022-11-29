@@ -66,33 +66,35 @@ public class Main {
             System.out.println("Skriv in ett heltal (1 eller 2)!");
         }
 
-        System.out.print("Vad är ditt namn? ");
-        System.out.println();
-        String namn = sc.nextLine();
+        System.out.println("Vad är ditt namn? ");
+        String namn = sc.next();
 
         switch (i) {
             case 1:
+                int a = 0;
                 for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
-                    if (k.namn == namn) { //Om namnet för kunden matchar namnet man skrev in
+                    System.out.println(k.namn);
+                    if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
                         System.out.println("Namn: " + k.namn + ". Personnummer: " + k.personnummer + ". Kontonummer: " + k.kontonummer);
                         Konto konto = new Konto(k); //Skapar ett nytt konto
                         konto.addKund(); //Lägger till kunden som kontoansvarig
                         k.addKonto(konto); //Lägger till kontot hos kunden.
                         System.out.println("Nytt konto tillagt! ");
-                        break;
-                    }
-                    else {
-                        System.out.println("Det finns ingen med det namnet i vår databas! ");
+                        a = 1;
                         break;
                     }
                 }
-
+                if (a == 0) {
+                System.out.println("Det finns ingen med det namnet i vår databas! ");
+                break;
+                }
             case 2:
                 for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
-                    if (k.namn == namn) { //Om namnet för kunden matchar namnet man skrev in
+                    if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
                         Sparkonto sparkonto = new Sparkonto(); //Skapar ett nytt Sparkonto
                         sparkonto.addKund(); //Lägger till kunden som kontoansvarig
                         k.addKonto(sparkonto); //Lägger till sparkontot hos kunden.
+                        System.out.println("Nytt konto tillagt! ");
                         break;
                     }
                     else {
