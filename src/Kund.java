@@ -2,11 +2,16 @@ import java.util.ArrayList;
 
 public class Kund {
     String namn; //Namnet på kunden
-    String personnummer; //Personnumer på kunden
+    String personnummer; //Personnummer på kunden
     double kontonummer; //Kontonummret
 
     ArrayList<Konto> konton = new ArrayList<Konto>(); //Lista av konton som kunden har
     public Kund () {}
+
+    public void kontolista() {
+        for (Konto k : konton)
+            System.out.println(k);
+    }
 
     public void addKonto(Konto konto){ //Lägger till kontot som skickas med i listan av konton som kunden har
         konton.add(konto);

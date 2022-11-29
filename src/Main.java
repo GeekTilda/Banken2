@@ -13,7 +13,7 @@ public class Main {
         System.out.println("~~~ Meny ~~~");
         System.out.println("1. Ny kund");
         System.out.println("2. Ñytt konto");
-        System.out.println("3. Ändra saldo"); //ETC
+        System.out.println("3. Ändra saldo");
         System.out.println("4. Exit");
         System.out.print("SKRIV: ");
         int i = 0;
@@ -33,7 +33,7 @@ public class Main {
                 nyttKonto();
                 break;
             case 3:
-                //saldo
+                //saldo FIXA FIXA FIXA FIXA FIXA FIXA FIXA FIXA
                 break;
             case 4:
                 System.exit(5); //Stänger av
@@ -43,7 +43,7 @@ public class Main {
         Scanner sc = new Scanner(System.in); //Skapar en ny skanner
         System.out.println();
         System.out.println("Vad heter du?");
-        String name = sc.nextLine(); //Sätter namnet till det man skrev
+        String name = sc.nextLine().toLowerCase(); //Sätter namnet till det man skrev (toLowerCase fixar så att namnet blir helt lowercase)
         System.out.println("Vad är ditt personnummer? ");
         String personnummer = sc.nextLine(); //Sätter personnummret till det man skrev
         double kontonummer = (int) (Math.random()*1000); //Får ett random kontonummer som först är en double men som bli konverterad till int
@@ -67,7 +67,7 @@ public class Main {
         }
 
         System.out.println("Vad är ditt namn? ");
-        String namn = sc.next();
+        String namn = sc.next().toLowerCase(); //toLowerCase fixar så att namnet blir helt lowercase
 
         switch (i) {
             case 1:
@@ -80,6 +80,7 @@ public class Main {
                         konto.addKund(); //Lägger till kunden som kontoansvarig
                         k.addKonto(konto); //Lägger till kontot hos kunden.
                         System.out.println("Nytt konto tillagt! ");
+                        k.kontolista(); //Skriver ut listan av konton
                         a = 1;
                         break;
                     }
@@ -89,18 +90,21 @@ public class Main {
                 break;
                 }
             case 2:
+                int b = 0;
                 for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
                     if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
                         Sparkonto sparkonto = new Sparkonto(); //Skapar ett nytt Sparkonto
                         sparkonto.addKund(); //Lägger till kunden som kontoansvarig
                         k.addKonto(sparkonto); //Lägger till sparkontot hos kunden.
                         System.out.println("Nytt konto tillagt! ");
+                        k.kontolista(); //Skriver ut listan av konton
+                        b = 1;
                         break;
                     }
-                    else {
-                        System.out.println("Det finns ingen med det namnet i vår databas! ");
-                        break;
-                    }
+                }
+                if (b == 0) {
+                    System.out.println("Det finns ingen med det namnet i vår databas! ");
+                    break;
                 }
         }
     }
