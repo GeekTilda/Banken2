@@ -9,10 +9,10 @@ public class Main {
             meny();
         }
     }
-    public static void meny() {
+    public static void meny() { //Metod som visar menyn.
         System.out.println("~~~ Meny ~~~");
         System.out.println("1. Ny kund");
-        System.out.println("2. Ñytt konto"); //VILKEN KONTOTYP????
+        System.out.println("2. Ñytt konto");
         System.out.println("3. Ändra saldo"); //ETC
         System.out.println("4. Exit");
         System.out.print("SKRIV: ");
@@ -25,7 +25,7 @@ public class Main {
             System.out.println("Skriv in ett heltal (1, 2, 3 eller 4)!");
         }
 
-        switch (i) {
+        switch (i) { //Olika scenarion (se menyn)
             case 1:
                 nyKund();
                 break;
@@ -49,7 +49,9 @@ public class Main {
         double kontonummer = (int) (Math.random()*1000); //Får ett random kontonummer som först är en double men som bli konverterad till int
         System.out.println("Ditt konto nummer är " + kontonummer);
         Kund kund = new Kund(name,personnummer,kontonummer); //Gör en ny instans av objektet kund.
+        bank.addKund(kund); //Lägger till kunden i bankens lista av kunder
         Transaktionskonto transaktionskonto = new Transaktionskonto(kund); //Skapar ett nytt transaktionskonto
+        kund.addKonto(transaktionskonto); //Lägger till transaktionskontot hos kundens lista av konton
     }
     public static void nyttKonto() {
         Scanner sc = new Scanner(System.in); //Skapar en ny skanner
@@ -64,21 +66,40 @@ public class Main {
             System.out.println("Skriv in ett heltal (1 eller 2)!");
         }
 
+        System.out.print("Vad är ditt namn? ");
+        System.out.println();
+        String namn = sc.nextLine();
+
         switch (i) {
             case 1:
-                System.out.println("Vad är ditt namn? ");
-                String namn = sc.nextLine();
                 for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
                     if (k.namn == namn) { //Om namnet för kunden matchar namnet man skrev in
+                        System.out.println("Namn: " + k.namn + ". Personnummer: " + k.personnummer + ". Kontonummer: " + k.kontonummer);
                         Konto konto = new Konto(k); //Skapar ett nytt konto
+                        konto.addKund(); //Lägger till kunden som kontoansvarig
+                        k.addKonto(konto); //Lägger till kontot hos kunden.
+                        System.out.println("Nytt konto tillagt! ");
+                        break;
+                    }
+                    else {
+                        System.out.println("Det finns ingen med det namnet i vår databas! ");
                         break;
                     }
                 }
-                System.out.println("Det finns ingen med det namnet i vår databas! ");
-                break;
-            case 2:
 
-                break;
+            case 2:
+                for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
+                    if (k.namn == namn) { //Om namnet för kunden matchar namnet man skrev in
+                        Sparkonto sparkonto = new Sparkonto(); //Skapar ett nytt Sparkonto
+                        sparkonto.addKund(); //Lägger till kunden som kontoansvarig
+                        k.addKonto(sparkonto); //Lägger till sparkontot hos kunden.
+                        break;
+                    }
+                    else {
+                        System.out.println("Det finns ingen med det namnet i vår databas! ");
+                        break;
+                    }
+                }
         }
     }
 }

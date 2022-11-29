@@ -7,12 +7,10 @@ public class Bank {
     public Bank () {} //Skapar en instans av Banken
 
     public void addKund(Kund kund) { //Lägger till en kund till "kunder" listan.
-
         kunder.add(kund);
     }
 
     public void addKonto(Konto konto) { //Lägger till ett konto i "konto" listan.
-
         konton.add(konto);
     }
 
