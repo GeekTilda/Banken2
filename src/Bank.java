@@ -22,6 +22,7 @@ public class Bank {
         System.out.println("Antal kunder: " + i); //Skriver ut antal kunder
     }
 
+
     public double omsattning() { //Räknar ihop alla kontons saldo
         double omsattning = 0;
         for (Konto k : konton) //For-loop som går igenom hela listan konton

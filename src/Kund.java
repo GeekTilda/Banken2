@@ -7,7 +7,9 @@ public class Kund {
     Transaktionskonto transaktionskonto = new Transaktionskonto();
 
     ArrayList<Konto> konton = new ArrayList<Konto>(); //Lista av konton som kunden har
-    public Kund () {}
+    public Kund () {
+
+    }
 
     public void kontolista() { //Skriver ut alla konton i listan "konton"
         int b = 0;

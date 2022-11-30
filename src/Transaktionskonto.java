@@ -15,6 +15,7 @@ public class Transaktionskonto extends Konto { //LÄNKA SAMMAN TRANSAKTIONSKONTO
     public void writeTransaktion() {
         for (String s : transaktioner) {
             System.out.println(transaktioner);
+
         }
     }
 

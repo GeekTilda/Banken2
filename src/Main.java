@@ -43,6 +43,7 @@ public class Main {
                 System.exit(5); //Stänger av
         }
     }
+
     public static void nyKund() {
         Scanner sc = new Scanner(System.in); //Skapar en ny skanner
         System.out.println();

@@ -7,6 +7,7 @@ public class Konto {
 
     public Konto() {}
 
+
     public void addKund(Kund kund) { //För att lägga till en kund till ett konto
         kund.addKonto(this); //Skickar vårt konto till kund klassen som skickar in det i metoden "addKonto"
     }

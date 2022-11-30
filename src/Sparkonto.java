@@ -5,5 +5,6 @@ public class Sparkonto extends Konto{
 
     public void addRenta() { //Lägger till räntan på saldo
         saldo = saldo*renta;
+
     }
 }
