@@ -10,8 +10,11 @@ public class Kund {
     public Kund () {}
 
     public void kontolista() {
-        for (Konto k : konton)
-            System.out.println(k);
+        int b = 0;
+        for (Konto k : konton) {
+            b++;
+            System.out.println(b + ". " + k);
+        }
     }
 
     public void addKonto(Konto konto){ //Lägger till kontot som skickas med i listan av konton som kunden har

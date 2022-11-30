@@ -134,10 +134,7 @@ public class Main {
                         System.out.println(k.namn);
                         if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
                             System.out.println("Namn: " + k.namn + ". Personnummer: " + k.personnummer);
-                            for (Konto ko : k.konton) { //Går igenom varje konto som kunden äger och skriver ut dess konton och kontosaldon.
-                                b++;
-                                System.out.println(b + ". Kontonummer: " + k.kontonummer + ". Saldo: " + ko.saldo);
-                            }
+                            k.kontolista();
                             System.out.println("Vilket konto? (Skriv heltal)");
                             try { //Try-catch metod som kollar om det man skriver in är ett heltal.
                                 c = sc.nextDouble();
