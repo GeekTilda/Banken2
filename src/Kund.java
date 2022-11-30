@@ -9,11 +9,11 @@ public class Kund {
     ArrayList<Konto> konton = new ArrayList<Konto>(); //Lista av konton som kunden har
     public Kund () {}
 
-    public void kontolista() {
+    public void kontolista() { //Skriver ut alla konton i listan "konton"
         int b = 0;
         for (Konto k : konton) {
             b++;
-            System.out.println(b + ". " + k);
+            System.out.println(b + ". " + k + ". Saldo: " + k.saldo); //Skriver ut alla konton och dess saldo
         }
     }
 

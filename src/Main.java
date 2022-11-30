@@ -14,7 +14,8 @@ public class Main {
         System.out.println("1. Ny kund");
         System.out.println("2. Ñytt konto");
         System.out.println("3. Ändra saldo");
-        System.out.println("4. Exit");
+        System.out.println("4. Kolla transaktioner");
+        System.out.println("5. Exit");
         System.out.print("SKRIV: ");
         int i = 0;
 
@@ -36,6 +37,9 @@ public class Main {
                 saldo();
                 break;
             case 4:
+                transaktioner();
+                break;
+            case 5:
                 System.exit(5); //Stänger av
         }
     }
@@ -108,7 +112,7 @@ public class Main {
                 }
         }
     }
-    public static void saldo() {
+    public static void saldo() { //Saldo metod som ändrar saldot.
         System.out.println("Vill du ta ut eller lägga in pengar? ");
         System.out.println("1. Ta ut");
         System.out.println("2. Lägga in");
@@ -140,6 +144,9 @@ public class Main {
                                 c = sc.nextDouble();
                             } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut.
                                 System.out.println("Skriv in ett heltal som matchar kontot!");
+                            }
+                            for (Konto t : k.konton) {
+                                b++;
                             }
                             if (c > b || c < 0) { //Kollar om det man skrev in var ett riktigt konto eller bara ett random nummer
                                 System.out.println("Inte riktigt konto!");
@@ -187,9 +194,9 @@ public class Main {
                         System.out.println(k.namn);
                         if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
                             System.out.println("Namn: " + k.namn + ". Personnummer: " + k.personnummer);
-                            for (Konto ko : k.konton) { //Går igenom varje konto som kunden äger och skriver ut dess konton och kontosaldon.
+                            k.kontolista();
+                            for (Konto t : k.konton) {
                                 b++;
-                                System.out.println(b + ". Kontonummer: " + k.kontonummer + ". Saldo: " + ko.saldo);
                             }
                             System.out.println("Vilket konto? (Skriv heltal)");
                             try { //Try-catch metod som kollar om det man skriver in är ett heltal.
@@ -232,5 +239,18 @@ public class Main {
                     break;
             }
         }
+    }
+    public static void transaktioner() {
+        Scanner sc = new Scanner(System.in); //Skapar en ny skanner
+        System.out.println("Vad är ditt namn? ");
+        String namn = sc.next().toLowerCase(); //toLowerCase fixar så att namnet blir helt lowercase
+
+        for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
+            if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
+                k.transaktionskonto.writeTransaktion(); //Skriver ut alla transaktioner
+                break;
+            }
+        }
+
     }
 }
