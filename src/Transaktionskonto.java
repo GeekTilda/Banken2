@@ -6,12 +6,14 @@ public class Transaktionskonto extends Konto { //LÄNKA SAMMAN TRANSAKTIONSKONTO
 
     public Transaktionskonto() {}
 
+    /*
     public Transaktionskonto(Kund kund) {
         this.kund = kund;
     }
+     */
 
     public void addTransaktion(double kontoTransaktion) { //Lägger till den senaste transaktionen i vår lista av transaktioner.
         //transaktion = this.senasteTransaktion; //Gör senasteTransaktion till den transaktionen vi precis gjorde
-        transaktioner.add(String.valueOf(transaktion));
+        transaktioner.add(String.valueOf(kontoTransaktion)); //Lägger till den transaktionen vi precis skrev in i listan av transaktioner
     }
 }

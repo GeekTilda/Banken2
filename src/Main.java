@@ -50,7 +50,7 @@ public class Main {
         System.out.println("Ditt konto nummer är " + kontonummer);
         Kund kund = new Kund(name,personnummer,kontonummer); //Gör en ny instans av objektet kund.
         bank.addKund(kund); //Lägger till kunden i bankens lista av kunder
-        kund.transaktionskonto.addTransaktion(15);
+        //kund.transaktionskonto.addTransaktion(15);
     }
     public static void nyttKonto() {
         Scanner sc = new Scanner(System.in); //Skapar en ny skanner
@@ -75,8 +75,8 @@ public class Main {
                     System.out.println(k.namn);
                     if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
                         System.out.println("Namn: " + k.namn + ". Personnummer: " + k.personnummer + ". Kontonummer: " + k.kontonummer);
-                        Konto konto = new Konto(k); //Skapar ett nytt konto
-                        konto.addKund(); //Lägger till kunden som kontoansvarig
+                        Konto konto = new Konto(); //Skapar ett nytt konto
+                        konto.addKund(k); //Lägger till kunden som kontoansvarig
                         k.addKonto(konto); //Lägger till kontot hos kunden.
                         System.out.println("Nytt konto tillagt! ");
                         k.kontolista(); //Skriver ut listan av konton
@@ -93,7 +93,7 @@ public class Main {
                 for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
                     if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
                         Sparkonto sparkonto = new Sparkonto(); //Skapar ett nytt Sparkonto
-                        sparkonto.addKund(); //Lägger till kunden som kontoansvarig
+                        sparkonto.addKund(k); //Lägger till kunden som kontoansvarig
                         k.addKonto(sparkonto); //Lägger till sparkontot hos kunden.
                         System.out.println("Nytt konto tillagt! ");
                         k.kontolista(); //Skriver ut listan av konton
@@ -143,7 +143,7 @@ public class Main {
                             } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut.
                                 System.out.println("Skriv in ett heltal som matchar kontot!");
                             }
-                            if (c > b || c < b) { //Kollar om det man skrev in var ett riktigt konto eller bara ett random nummer
+                            if (c > b || c < 0) { //Kollar om det man skrev in var ett riktigt konto eller bara ett random nummer
                                 System.out.println("Inte riktigt konto!");
                                 break;
                             }
@@ -162,7 +162,7 @@ public class Main {
                                         System.out.println("Går inte att ta ut mer än vad du har!");
                                         break;
                                     }
-                                    kon.addSaldo(d * -1); //Ändrar saldot
+                                    kon.addSaldo(d * -1, k); //Ändrar saldot
                                     k.transaktionskonto.addTransaktion(d * -1); //Lägger till transaktionen
                                     g = 1;
                                     break;
@@ -199,7 +199,7 @@ public class Main {
                             } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut.
                                 System.out.println("Skriv in ett heltal som matchar kontot!");
                             }
-                            if (i > b || i < b) { //Kollar om det man skrev in var ett riktigt konto eller bara ett random nummer
+                            if (c > b || c < 0) { //Kollar om det man skrev in var ett riktigt konto eller bara ett random nummer
                                 System.out.println("Inte riktigt konto!");
                                 break;
                             }
@@ -208,13 +208,13 @@ public class Main {
                             for (Konto kon : k.konton) { //Går igenom alla konton i kundens lista av konton
                                 f++;
                                 if (f == b) { //Hittar samma konto
-                                    System.out.println("Hur mycket vill du ta ut?");
+                                    System.out.println("Hur mycket vill du lägga in?");
                                     try { //Try-catch metod som kollar om det man skriver in är ett heltal.
                                         d = sc.nextDouble();
                                     } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut.
                                         System.out.println("Skriv in ett heltal som matchar kontot!");
                                     }
-                                    kon.addSaldo(d); //Ändrar saldot
+                                    kon.addSaldo(d, k); //Ändrar saldot
                                     k.transaktionskonto.addTransaktion(d); //Lägger till transaktionen
                                     g = 1;
                                     break;
