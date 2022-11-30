@@ -46,11 +46,12 @@ public class Main {
         String name = sc.nextLine().toLowerCase(); //Sätter namnet till det man skrev (toLowerCase fixar så att namnet blir helt lowercase)
         System.out.println("Vad är ditt personnummer? ");
         String personnummer = sc.nextLine(); //Sätter personnummret till det man skrev
-        double kontonummer = (int) (Math.random()*1000); //Får ett random kontonummer som först är en double men som bli konverterad till int
+        double kontonummer = (Math.random()*1000); //Får ett random kontonummer som först är en double men som bli konverterad till int
         System.out.println("Ditt konto nummer är " + kontonummer);
         Kund kund = new Kund(name,personnummer,kontonummer); //Gör en ny instans av objektet kund.
         bank.addKund(kund); //Lägger till kunden i bankens lista av kunder
         //kund.transaktionskonto.addTransaktion(15);
+        kund.kontolista();
     }
     public static void nyttKonto() {
         Scanner sc = new Scanner(System.in); //Skapar en ny skanner
@@ -72,22 +73,22 @@ public class Main {
             case 1:
                 int a = 0;
                 for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
-                    System.out.println(k.namn);
+                    System.out.println(k.namn); //Skriver ut namn
                     if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
                         System.out.println("Namn: " + k.namn + ". Personnummer: " + k.personnummer + ". Kontonummer: " + k.kontonummer);
                         Konto konto = new Konto(); //Skapar ett nytt konto
                         konto.addKund(k); //Lägger till kunden som kontoansvarig
                         k.addKonto(konto); //Lägger till kontot hos kunden.
                         System.out.println("Nytt konto tillagt! ");
-                        k.kontolista(); //Skriver ut listan av konton
                         a = 1;
+                        k.kontolista(); //Skriver ut listan av konton
                         break;
                     }
                 }
                 if (a == 0) {
                 System.out.println("Det finns ingen med det namnet i vår databas! ");
-                break;
                 }
+                break;
             case 2:
                 int b = 0;
                 for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
