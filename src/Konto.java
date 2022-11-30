@@ -17,7 +17,7 @@ public class Konto {
 
     public void addSaldo(double transaktion) { //Ändrar saldot efter senaste transaktionen.
         this.transaktion = 0; //Nollställer transaktionen
-        saldo = saldo + transaktion; //Ändrar saldot efter transaktionen
+        saldo =+ transaktion; //Ändrar saldot efter transaktionen
         this.transaktion = transaktion; //Sätter transaktionen som den vi precis fick in
     }
 

@@ -4,6 +4,7 @@ public class Kund {
     String namn; //Namnet på kunden
     String personnummer; //Personnummer på kunden
     double kontonummer; //Kontonummret
+    Transaktionskonto transaktionskonto = new Transaktionskonto();
 
     ArrayList<Konto> konton = new ArrayList<Konto>(); //Lista av konton som kunden har
     public Kund () {}

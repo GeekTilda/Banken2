@@ -33,7 +33,7 @@ public class Main {
                 nyttKonto();
                 break;
             case 3:
-                //saldo FIXA FIXA FIXA FIXA FIXA FIXA FIXA FIXA
+                saldo();
                 break;
             case 4:
                 System.exit(5); //Stänger av
@@ -50,8 +50,7 @@ public class Main {
         System.out.println("Ditt konto nummer är " + kontonummer);
         Kund kund = new Kund(name,personnummer,kontonummer); //Gör en ny instans av objektet kund.
         bank.addKund(kund); //Lägger till kunden i bankens lista av kunder
-        Transaktionskonto transaktionskonto = new Transaktionskonto(kund); //Skapar ett nytt transaktionskonto
-        kund.addKonto(transaktionskonto); //Lägger till transaktionskontot hos kundens lista av konton
+        kund.transaktionskonto.addTransaktion(15);
     }
     public static void nyttKonto() {
         Scanner sc = new Scanner(System.in); //Skapar en ny skanner
@@ -106,6 +105,134 @@ public class Main {
                     System.out.println("Det finns ingen med det namnet i vår databas! ");
                     break;
                 }
+        }
+    }
+    public static void saldo() {
+        System.out.println("Vill du ta ut eller lägga in pengar? ");
+        System.out.println("1. Ta ut");
+        System.out.println("2. Lägga in");
+        int i = 0;
+        Scanner sc = new Scanner(System.in); //Skapar en ny skanner
+
+        try { //Try-catch metod som kollar om det man skriver in är ett heltal.
+            i = sc.nextInt();
+        } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut.
+            System.out.println("Skriv in ett heltal (1 eller 2)!");
+        }
+
+        if (i == 1 || i == 2) { //Kollar så att man skrev 1 eller 2
+            System.out.println("Vad är ditt namn? ");
+            String namn = sc.next().toLowerCase(); //toLowerCase fixar så att namnet blir helt lowercase
+            switch (i) {
+                case 1:
+                    int a = 0;
+                    int b = 0;
+                    double c = 0;
+                    double d = 0;
+                    for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
+                        System.out.println(k.namn);
+                        if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
+                            System.out.println("Namn: " + k.namn + ". Personnummer: " + k.personnummer);
+                            for (Konto ko : k.konton) { //Går igenom varje konto som kunden äger och skriver ut dess konton och kontosaldon.
+                                b++;
+                                System.out.println(b + ". Kontonummer: " + k.kontonummer + ". Saldo: " + ko.saldo);
+                            }
+                            System.out.println("Vilket konto? (Skriv heltal)");
+                            try { //Try-catch metod som kollar om det man skriver in är ett heltal.
+                                c = sc.nextDouble();
+                            } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut.
+                                System.out.println("Skriv in ett heltal som matchar kontot!");
+                            }
+                            if (c > b || c < b) { //Kollar om det man skrev in var ett riktigt konto eller bara ett random nummer
+                                System.out.println("Inte riktigt konto!");
+                                break;
+                            }
+                            int f = 0;
+                            int g = 0;
+                            for (Konto kon : k.konton) { //Går igenom alla konton i kundens lista av konton
+                                f++;
+                                if (f == b) { //Hittar samma konto
+                                    System.out.println("Hur mycket vill du ta ut?");
+                                    try { //Try-catch metod som kollar om det man skriver in är ett heltal.
+                                        d = sc.nextDouble();
+                                    } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut.
+                                        System.out.println("Skriv in ett heltal som matchar kontot!");
+                                    }
+                                    if (d > kon.saldo) { //Kollar om man försöker ta ut mer än vad man har
+                                        System.out.println("Går inte att ta ut mer än vad du har!");
+                                        break;
+                                    }
+                                    kon.addSaldo(d * -1); //Ändrar saldot
+                                    k.transaktionskonto.addTransaktion(d * -1); //Lägger till transaktionen
+                                    g = 1;
+                                    break;
+                                }
+                            }
+                            if (g == 0) { //Om det inte hittade något konto/om något gick fel
+                                break;
+                            }
+                            a = 1;
+                            break;
+                        }
+                    }
+                    if (a == 0) {
+                        System.out.println("Det finns ingen med det namnet i vår databas! ");
+                        break;
+                    }
+                    break;
+                case 2:
+                    a = 0;
+                    b = 0;
+                    c = 0;
+                    d = 0;
+                    for (Kund k : bank.kunder) { //For loop som går igenom listan av kunder i banken
+                        System.out.println(k.namn);
+                        if (k.namn.equals(namn)) { //Om namnet för kunden matchar namnet man skrev in
+                            System.out.println("Namn: " + k.namn + ". Personnummer: " + k.personnummer);
+                            for (Konto ko : k.konton) { //Går igenom varje konto som kunden äger och skriver ut dess konton och kontosaldon.
+                                b++;
+                                System.out.println(b + ". Kontonummer: " + k.kontonummer + ". Saldo: " + ko.saldo);
+                            }
+                            System.out.println("Vilket konto? (Skriv heltal)");
+                            try { //Try-catch metod som kollar om det man skriver in är ett heltal.
+                                c = sc.nextDouble();
+                            } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut.
+                                System.out.println("Skriv in ett heltal som matchar kontot!");
+                            }
+                            if (i > b || i < b) { //Kollar om det man skrev in var ett riktigt konto eller bara ett random nummer
+                                System.out.println("Inte riktigt konto!");
+                                break;
+                            }
+                            int f = 0;
+                            int g = 0;
+                            for (Konto kon : k.konton) { //Går igenom alla konton i kundens lista av konton
+                                f++;
+                                if (f == b) { //Hittar samma konto
+                                    System.out.println("Hur mycket vill du ta ut?");
+                                    try { //Try-catch metod som kollar om det man skriver in är ett heltal.
+                                        d = sc.nextDouble();
+                                    } catch (Exception e) { //Om det inte är ett heltal skrivs följande text ut.
+                                        System.out.println("Skriv in ett heltal som matchar kontot!");
+                                    }
+                                    kon.addSaldo(d); //Ändrar saldot
+                                    k.transaktionskonto.addTransaktion(d); //Lägger till transaktionen
+                                    g = 1;
+                                    break;
+                                }
+                            }
+                            if (g == 0) { //Om det inte hittade något konto/om något gick fel
+                                break;
+                            }
+                            a = 1;
+                            break;
+                        }
+                    }
+                    if (a == 0) {
+                        System.out.println("Det finns ingen med det namnet i vår databas! ");
+                        break;
+                    }
+                    break;
+            }
         }
     }
 }
